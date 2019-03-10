@@ -1,6 +1,6 @@
 const gulp = require("gulp");
 // const terser = require("gulp-terser");
-// const rename = require("gulp-rename");
+const rename = require("gulp-rename");
 
 //bootstrap-toasts
 const bootstrap_toasts_js_path = "./node_modules/bootstrap-toasts/dist/bootstrap-toasts.js";
@@ -38,6 +38,7 @@ const font_webfonts_path = "./node_modules/@fortawesome/fontawesome-free/webfont
 //video.js
 const video_js_path = "./node_modules/video.js/dist/video.js";
 const video_min_js_path = "./node_modules/video.js/dist/video.min.js";
+const video_lang_js_path = "./node_modules/video.js/dist/lang/zh-CN.js";
 const video_css_path = "./node_modules/video.js/dist/video-js.css";
 const video_min_css_path = "./node_modules/video.js/dist/video-js.min.css";
 
@@ -83,6 +84,11 @@ function copy_vue(done) {
 
 function copy_video(done) {
     gulp.src([video_js_path, video_min_js_path]).pipe(gulp.dest("./static/js/"));
+    gulp.src([video_lang_js_path])
+        .pipe(rename({
+            prefix: "video."
+        }))
+        .pipe(gulp.dest("./static/js/"));
     gulp.src([video_css_path, video_min_css_path]).pipe(gulp.dest("./static/css/"));
     done();
 }
