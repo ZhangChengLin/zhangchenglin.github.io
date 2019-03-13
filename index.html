@@ -24,27 +24,42 @@
 <div class="container">
     <div>我的作品</div>
     <div class="d-flex justify-content-start">
-        <a class="mr-2" href="./bootstrap-toasts/" target="_blank" title="Bootstrap-toasts">Bootstrap-toasts</a>
-        <a class="mr-2" href="./bootstrap-toasts/demo.html" target="_blank" title="Bootstrap-toasts Demo">Demo</a>
+        <a class="mr-2" href="https://zhangchenglin.github.io/bootstrap-toasts/" target="_blank"
+           title="Bootstrap-toasts">Bootstrap-toasts</a>
+        <a class="mr-2" href="https://zhangchenglin.github.io/bootstrap-toasts/demo.html" target="_blank"
+           title="Bootstrap-toasts Demo">Demo</a>
     </div>
     <div class="d-flex justify-content-start">
-        <a class="mr-2" href="./bootstrap-modal-js/" target="_blank" title="Bootstrap-modal-js">Bootstrap-modal-js</a>
-        <a class="mr-2" href="./bootstrap-modal-js/demo.html" target="_blank" title="Bootstrap-modal-js Demo">Demo</a>
+        <a class="mr-2" href="https://zhangchenglin.github.io/bootstrap-modal-js/" target="_blank"
+           title="Bootstrap-modal-js">Bootstrap-modal-js</a>
+        <a class="mr-2" href="https://zhangchenglin.github.io/bootstrap-modal-js/demo.html" target="_blank"
+           title="Bootstrap-modal-js Demo">Demo</a>
     </div>
 </div>
 <div class="mt-5 d-flex justify-content-center container">
     <video id="video_aa" class="video-js" width="640" height="264" preload="metadata" data-setup='{}' controls>
-        <source src="https://张成林.中国/media_2019/03/1.mp4" type="video/mp4">
+        <source src="https://zhangchenglin.github.io/media_2019/03/1.mp4" type="video/mp4">
         <p class="vjs-no-js text-danger">请开启JavaScript功能或者升级浏览器版本</p>
     </video>
 </div>
+<div class="mt-5 container">
+    <a href="javascript:" class="btn btn-sm btn-outline-success" data-type="video"
+       data-source-mp4="https://zhangchenglin.github.io/media_2019/03/1.mp4">石头人</a>
 
+    <a href="javascript:" class="btn btn-sm btn-outline-success" data-type="video"
+       data-source-mp4="https://zhangchenglin.github.io/media_2019/03/2.mp4"
+       data-source-ogg="https://zhangchenglin.github.io/media_2019/03/2.ogg">石头人</a>
+
+    <a href="javascript:" class="btn btn-sm btn-outline-success" data-type="video"
+       data-source-mp4="https://zhangchenglin.github.io/media_2019/03/3.mp4">石头人</a>
+</div>
 
 <div>
     <script src="static/js/jquery.min.js"></script>
     <script src="static/js/popper.min.js"></script>
     <script src="static/js/bootstrap.min.js"></script>
     <script src="static/js/bootstrap-toasts.min.js"></script>
+    <script src="static/js/bootstrap-modal-js.min.js"></script>
     <script src="static/js/vue.min.js"></script>
     <script src="static/js/video.min.js"></script>
     <script src="static/js/video.zh-CN.js"></script>
@@ -52,6 +67,66 @@
     <script src="static/js/zcl.js"></script>
 </div>
 <script>
+    (function () {
+        bootstrap_modal_js_video();
+
+        function bootstrap_modal_js_video() {
+            const info = document.querySelectorAll("[data-type='video']");
+            for (let i = 0; i < info.length; i++) {
+                info[i].addEventListener("click", function (e) {
+                    bootstrapModalJs("a", bootstrap_modal_js_build_video(e), "foo");
+                });
+            }
+        }
+
+        function bootstrap_modal_js_get_video(e) {
+            const that = e.target;
+            const video_source_mp4 = that.getAttribute("data-source-mp4");
+            const video_source_ogg = that.getAttribute("data-source-ogg");
+            const video_source_webm = that.getAttribute("data-source-webm");
+            return {
+                "mp4": video_source_mp4,
+                "ogg": video_source_ogg,
+                "webm": video_source_webm,
+            };
+        }
+
+        function bootstrap_modal_js_build_video(e) {
+            const video_source_obj = bootstrap_modal_js_get_video(e);
+            const video = document.createElement("video");
+            const p_no_js = document.createElement("p");
+            const p_no_js_a = document.createElement("a");
+            video.className = "video-js";
+            video.width = "640";
+            video.height = "264";
+            video.preload = "metadata";
+            video.setAttribute("data-setup", "{}");
+            video.controls = "controls";
+
+            p_no_js.className = "vjs-no-js text-danger";
+
+            p_no_js_a.href = "";
+            p_no_js_a.target = "_blank";
+            p_no_js_a.title = "请升级浏览器";
+            p_no_js_a.innerHTML = "请开启JavaScript功能或者升级浏览器版本";
+
+            for (let i in video_source_obj) {
+                if (video_source_obj[i]) {
+                    let url = video_source_obj[i];
+                    video_source_obj[i] = document.createElement("source");
+                    video_source_obj[i].type = "video/" + i;
+                    video_source_obj[i].src = url;
+                    video.appendChild(video_source_obj[i]);
+                }
+            }
+            p_no_js.appendChild(p_no_js_a);
+            video.appendChild(p_no_js);
+            console.log(video);
+            return video;
+        }
+
+
+    })();
 </script>
 </body>
 </html>

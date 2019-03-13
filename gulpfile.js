@@ -6,6 +6,11 @@ const rename = require("gulp-rename");
 const bootstrap_toasts_js_path = "./node_modules/bootstrap-toasts/dist/bootstrap-toasts.js";
 const bootstrap_toasts_min_js_path = "./node_modules/bootstrap-toasts/dist/bootstrap-toasts.min.js";
 
+//bootstrap-modal-js
+const bootstrap_modal_js_js_path = "./node_modules/bootstrap-modal-js/dist/bootstrap-modal-js.js";
+const bootstrap_modal_js_min_js_path = "./node_modules/bootstrap-modal-js/dist/bootstrap-modal-js.min.js";
+
+
 //jquery
 const jquery_js_path = "./node_modules/jquery/dist/jquery.js";
 const jquery_min_js_path = "./node_modules/jquery/dist/jquery.min.js";
@@ -42,17 +47,23 @@ const video_lang_js_path = "./node_modules/video.js/dist/lang/zh-CN.js";
 const video_css_path = "./node_modules/video.js/dist/video-js.css";
 const video_min_css_path = "./node_modules/video.js/dist/video-js.min.css";
 
+gulp.task("copy_fonts", copy_fonts);
 gulp.task("copy_jq", copy_jq);
 gulp.task("copy_popper", copy_popper);
 gulp.task("copy_bs", copy_bs);
+gulp.task("copy_bmj", copy_bmj);
 gulp.task("copy_bt", copy_bt);
 gulp.task("copy_vue", copy_vue);
-gulp.task("copy_fonts", copy_fonts);
 gulp.task("copy_video", copy_video);
 
 function copy_fonts(done) {
     gulp.src([font_css_path, font_min_css_path]).pipe(gulp.dest("./static/font/css"));
     gulp.src([font_webfonts_path]).pipe(gulp.dest("./static/font/webfonts"));
+    done();
+}
+
+function copy_bmj(done) {
+    gulp.src([bootstrap_modal_js_js_path, bootstrap_modal_js_min_js_path]).pipe(gulp.dest("./static/js/"));
     done();
 }
 
