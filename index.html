@@ -36,22 +36,9 @@
            title="Bootstrap-modal-js Demo">Demo</a>
     </div>
 </div>
-<div class="mt-5 d-flex justify-content-center container">
-    <video id="video_aa" class="video-js" width="640" height="264" preload="metadata" data-setup='{}' controls>
-        <source src="https://zhangchenglin.github.io/media_2019/03/1.mp4" type="video/mp4">
-        <p class="vjs-no-js text-danger">请开启JavaScript功能或者升级浏览器版本</p>
-    </video>
-</div>
 <div class="mt-5 container">
     <a href="javascript:" class="btn btn-sm btn-outline-success" data-type="video"
        data-source-mp4="https://zhangchenglin.github.io/media_2019/03/1.mp4">石头人</a>
-
-    <a href="javascript:" class="btn btn-sm btn-outline-success" data-type="video"
-       data-source-mp4="https://zhangchenglin.github.io/media_2019/03/2.mp4"
-       data-source-ogg="https://zhangchenglin.github.io/media_2019/03/2.ogg">石头人</a>
-
-    <a href="javascript:" class="btn btn-sm btn-outline-success" data-type="video"
-       data-source-mp4="https://zhangchenglin.github.io/media_2019/03/3.mp4">石头人</a>
 </div>
 
 <div>
@@ -74,7 +61,9 @@
             const info = document.querySelectorAll("[data-type='video']");
             for (let i = 0; i < info.length; i++) {
                 info[i].addEventListener("click", function (e) {
-                    bootstrapModalJs("a", bootstrap_modal_js_build_video(e), "foo");
+                    const id = bootstrapModalJs("", bootstrap_modal_js_build_video(e), "", "xl", true);
+                    bootstrap_modal_js_video_add_id(id);
+                    bootstrap_modal_js_switch_video(id);
                 });
             }
         }
@@ -121,10 +110,18 @@
             }
             p_no_js.appendChild(p_no_js_a);
             video.appendChild(p_no_js);
-            console.log(video);
             return video;
         }
 
+        function bootstrap_modal_js_video_add_id(id) {
+            const modal = document.querySelector("#Modal_" + id);
+            const video = modal.querySelector("video");
+            video.id = "video_" + id;
+        }
+
+        function bootstrap_modal_js_switch_video(id) {
+            const player = videojs("#video_" + id);
+        }
 
     })();
 </script>

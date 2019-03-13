@@ -1,6 +1,6 @@
 /*!
  * Name: bootstrap-modal-js
- * Version: 0.0.1-alpha.beta.2
+ * Version: 0.0.1-alpha.beta.3
  * Author: 张成林
  * Email: 469946668@qq.com
  * Description: Bootstrap modal
@@ -11,9 +11,9 @@
  */
 
 function bootstrapModalJs(title, body, footer, ModalSizes, VerticallyCentered, LongContentType, EventType, CallbackFunction, Options) {
-    title = title ? (typeof title === "string" ? title : typeof title === "function" ? title() + "" : "") : "";
-    body = body ? (typeof body === "string" ? body : typeof body === "function" ? body() + "" : "") : "";
-    footer = footer ? (typeof footer === "string" ? footer : typeof footer === "function" ? footer() + "" : "") : "";
+    title = title ? (typeof title === "function" ? title() : (typeof title === "string" ? title : (typeof title === "object" ? title : ""))) : "";
+    body = body ? (typeof body === "function" ? body() : (typeof body === "string" ? body : (typeof body === "object" ? body : ""))) : "";
+    footer = footer ? (typeof footer === "function" ? footer() : (typeof footer === "string" ? footer : (typeof footer === "object" ? footer : ""))) : "";
     ModalSizes = ModalSizes && typeof ModalSizes !== "undefined" && typeof ModalSizes !== "boolean" ? ModalSizes : "default";
     VerticallyCentered = VerticallyCentered && typeof VerticallyCentered === "boolean" ? VerticallyCentered : false;
     LongContentType = LongContentType && typeof LongContentType === "boolean" ? LongContentType : false;
@@ -80,21 +80,21 @@ function bootstrapModalJs(title, body, footer, ModalSizes, VerticallyCentered, L
     modal_header.className = "modal-header";
 
     modal_title.id = modal_title_ID;
-    modal_title.innerHTML = title;
+    typeof title === "object" ? modal_title.appendChild(title) : modal_title.innerHTML = title;
 
     modal_close_btn.type = "button";
     modal_close_btn.className = "close";
-    modal_close_btn.setAttribute("data-dismiss", "modal");//检查后期事件规则
+    modal_close_btn.setAttribute("data-dismiss", "modal");
     modal_close_btn.setAttribute("aria-label", "Close");
 
     modal_close_span.setAttribute("aria-hidden", "true");
     modal_close_span.innerHTML = "&times;";
 
     modal_body.className = "modal-body";
-    modal_body.innerHTML = body;
+    typeof body === "object" ? modal_body.appendChild(body) : modal_body.innerHTML = body;
 
     modal_footer.className = "modal-footer";
-    modal_footer.innerHTML = footer;
+    typeof footer === "object" ? modal_footer.appendChild(footer) : modal_footer.innerHTML = footer;
 
 
     modal_close_btn.appendChild(modal_close_span);
