@@ -8,16 +8,17 @@
                 const id = bootstrapModalJs(" ", bootstrap_modal_js_build_video(e), "", "xl", true);
                 bootstrap_modal_js_modal_add_title(e, id);
                 bootstrap_modal_js_video_add_id(id);
+
                 bootstrap_modal_js_switch_video(id);
             });
         }
     }
 
-    function bootstrap_modal_js_get_video(e) {
-        const that = e.target;
-        const video_source_mp4 = that.getAttribute("data-source-mp4");
-        const video_source_ogg = that.getAttribute("data-source-ogg");
-        const video_source_webm = that.getAttribute("data-source-webm");
+    function bootstrap_modal_js_get_video_source(e) {
+        const video_source = e.target;
+        const video_source_mp4 = video_source.getAttribute("data-source-mp4");
+        const video_source_ogg = video_source.getAttribute("data-source-ogg");
+        const video_source_webm = video_source.getAttribute("data-source-webm");
         return {
             "mp4": video_source_mp4,
             "ogg": video_source_ogg,
@@ -25,8 +26,14 @@
         };
     }
 
+    function bootstrap_modal_js_get_video_poster(e) {
+        const video_poster = e.target;
+        return video_poster.getAttribute("data-video-poster") ? video_poster.getAttribute("data-video-poster") : "";
+    }
+
     function bootstrap_modal_js_build_video(e) {
-        const video_source_obj = bootstrap_modal_js_get_video(e);
+        const video_source_obj = bootstrap_modal_js_get_video_source(e);
+        const video_poster_value = bootstrap_modal_js_get_video_poster(e);
         const video = document.createElement("video");
         const p_no_js = document.createElement("p");
         const p_no_js_a = document.createElement("a");
@@ -34,6 +41,7 @@
         video.width = "640";
         video.height = "264";
         video.preload = "metadata";
+        video_poster_value ? video.poster = video_poster_value : "";
         video.setAttribute("data-setup", "{}");
         video.controls = "controls";
 
