@@ -5,7 +5,7 @@
         const info = document.querySelectorAll("[data-type='modal-video']");
         for (let i = 0; i < info.length; i++) {
             info[i].addEventListener("click", function (e) {
-                const id = bootstrapModalJs("", bootstrap_modal_js_build_video(e), "", "xl", true);
+                const id = bootstrapModalJs(" ", bootstrap_modal_js_build_video(e), "", "xl", true);
                 bootstrap_modal_js_modal_add_title(e, id);
                 bootstrap_modal_js_video_add_id(id);
                 bootstrap_modal_js_switch_video(id);
@@ -61,7 +61,7 @@
     function bootstrap_modal_js_modal_add_title(e, id) {
         const modal_title = document.querySelector("#modalTitle_" + id);
         const modal_title_value = e.target.title ? e.target.title : e.target.innerHTML;
-        modal_title.innerHTML = modal_title_value;
+        modal_title ? modal_title.innerHTML = modal_title_value : "";
     }
 
     function bootstrap_modal_js_video_add_id(id) {
