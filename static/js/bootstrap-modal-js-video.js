@@ -30,7 +30,7 @@
         const video = document.createElement("video");
         const p_no_js = document.createElement("p");
         const p_no_js_a = document.createElement("a");
-        video.className = "video-js";
+        video.className = "mx-auto video-js";
         video.width = "640";
         video.height = "264";
         video.preload = "metadata";
