@@ -1,10 +1,10 @@
 /*!
  * Name: bootstrap-toasts
- * Version: 0.0.11
+ * Version: 0.0.12
  * Author: 张成林
  * Email: 469946668@qq.com
  * Description: Bootstrap toasts
- * Copyright (c) 2019 
+ * Copyright (c) 2019 张成林
  * Licenses: MIT
  * under the MIT License (license terms are at http://opensource.org/licenses/MIT).
  * GitHub: https://github.com/zhangchenglin/bootstrap-toasts
@@ -24,9 +24,9 @@ function bootstrapToasts(title, content, titleColor, delay, position, releaseTim
     toasts_style();
     let TimeID = new Date().getTime();
     let toastsID = "toasts_" + TimeID;
-    let toasts_area_ID = "toasts_area_" + TimeID;
+    let toastsArea_ID = "toastsArea_" + TimeID;
     let toastsContainer = document.querySelector("#bootstrapToastsContainer");
-    let toasts_area = document.createElement("div");
+    let toastsArea = document.createElement("div");
     let toasts = document.createElement("div");
     let toasts_header = document.createElement("div");
     let toasts_header_icon = document.createElement("i");
@@ -38,29 +38,29 @@ function bootstrapToasts(title, content, titleColor, delay, position, releaseTim
 
     switch (position) {
         case "topLeft":
-            toasts_area.className = "m-1 position-absolute toasts-topLeft";
+            toastsArea.className = "m-1 position-absolute toasts-topLeft";
             break;
         case "topCenter":
-            toasts_area.className = "m-1 position-absolute toasts-topCenter";
+            toastsArea.className = "m-1 position-absolute toasts-topCenter";
             break;
         case "topRight":
-            toasts_area.className = "m-1 position-absolute toasts-topRight";
+            toastsArea.className = "m-1 position-absolute toasts-topRight";
             break;
         case "bottomLeft":
-            toasts_area.className = "m-1 position-absolute toasts-bottomLeft";
+            toastsArea.className = "m-1 position-absolute toasts-bottomLeft";
             break;
         case "bottomCenter":
-            toasts_area.className = "m-1 position-absolute toasts-bottomCenter";
+            toastsArea.className = "m-1 position-absolute toasts-bottomCenter";
             break;
         case "bottomRight":
-            toasts_area.className = "m-1 position-absolute toasts-bottomRight";
+            toastsArea.className = "m-1 position-absolute toasts-bottomRight";
             break;
         case "center":
         default:
-            toasts_area.className = "m-1 position-absolute toasts-center";
+            toastsArea.className = "m-1 position-absolute toasts-center";
     }
 
-    toasts_area.id = toasts_area_ID;
+    toastsArea.id = toastsArea_ID;
     toasts.className = "toast";
     toasts.id = toastsID;
     switch (ariaType) {
@@ -135,8 +135,8 @@ function bootstrapToasts(title, content, titleColor, delay, position, releaseTim
     toasts_header.appendChild(toasts_header_button);
     toasts.appendChild(toasts_header);
     toasts.appendChild(toasts_body);
-    toasts_area.appendChild(toasts);
-    toastsContainer.appendChild(toasts_area);
+    toastsArea.appendChild(toasts);
+    toastsContainer.appendChild(toastsArea);
 
     let jQuery_toastsID = $("#" + toastsID);
     jQuery_toastsID.toast({
@@ -151,7 +151,7 @@ function bootstrapToasts(title, content, titleColor, delay, position, releaseTim
     jQuery_toastsID.toast("show");
 
     remove_bootstrap_toasts(toastsID, delay);
-    remove_bootstrap_toasts_area(toasts_area_ID, delay);
+    remove_bootstrap_toastsArea(toastsArea_ID, delay);
     remove_bootstrap_toasts_container(delay);
 }
 
@@ -167,10 +167,10 @@ function remove_bootstrap_toasts(toasts_id, delay) {
     }, delay + 1e3)
 }
 
-function remove_bootstrap_toasts_area(toasts_area_id, delay) {
-    let toasts_area = document.querySelector("#" + toasts_area_id);
+function remove_bootstrap_toastsArea(toastsArea_id, delay) {
+    let toastsArea = document.querySelector("#" + toastsArea_id);
     setTimeout(function () {
-        toasts_area.parentElement.removeChild(toasts_area);
+        toastsArea.parentElement.removeChild(toastsArea);
     }, delay + 1e3)
 }
 
