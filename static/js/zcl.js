@@ -14,3 +14,6 @@
             })
     })
 })();
+
+bootstrap_modal_js_video();
+
