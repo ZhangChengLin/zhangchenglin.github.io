@@ -2,7 +2,7 @@
   "name": "zhangchenglin.github.io",
   "version": "0.0.1-alpha",
   "description": "张成林的小窝",
-  "main": "index.js",
+  "main": "index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -13,13 +13,15 @@
   "keywords": [
     "张成林"
   ],
-  "author": "张成林",
-  "authorEmail": "469946668@qq.com",
+  "author": {
+    "name": "张成林",
+    "email": "469946668@qq.com"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/zhangchenglin/zhangchenglin.github.io/issues"
   },
-  "homepage": "https://张成林.中国",
+  "homepage": "https://zhangchenglin.github.io",
   "devDependencies": {
     "gulp": "^4.0.0",
     "gulp-rename": "^1.4.0",
@@ -30,6 +32,7 @@
     "@fortawesome/fontawesome-free": "^5.7.2",
     "bootstrap-modal-js": "^0.0.1-alpha.beta.6",
     "bootstrap-toasts": "^0.0.12",
+    "vanilla-lazyload": "^11.0.5",
     "video.js": "^7.4.1",
     "vue": "^2.6.9"
   }
