@@ -1,6 +1,6 @@
 /*!
  * Name: bootstrap-toasts
- * Version: 0.0.12
+ * Version: 0.0.13-beta
  * Author: 张成林
  * Email: 469946668@qq.com
  * Description: Bootstrap toasts
