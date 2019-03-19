@@ -51,6 +51,10 @@ const video_lang_js_path = "./node_modules/video.js/dist/lang/zh-CN.js";
 const video_css_path = "./node_modules/video.js/dist/video-js.css";
 const video_min_css_path = "./node_modules/video.js/dist/video-js.min.css";
 
+//viewerjs
+const viewerjs_min_css_path = "./node_modules/viewerjs/dist/viewer.min.css";
+const viewerjs_min_js_path = "./node_modules/viewerjs/dist/viewer.min.js";
+
 gulp.task("copy_fonts", copy_fonts);
 gulp.task("copy_jq", copy_jq);
 gulp.task("copy_popper", copy_popper);
@@ -60,6 +64,7 @@ gulp.task("copy_lazyload", copy_lazyload);
 gulp.task("copy_bt", copy_bt);
 gulp.task("copy_vue", copy_vue);
 gulp.task("copy_video", copy_video);
+gulp.task("copy_viewerjs", copy_viewerjs);
 
 function copy_fonts(done) {
     gulp.src([font_css_path, font_min_css_path]).pipe(gulp.dest("./static/font/css"));
@@ -111,5 +116,11 @@ function copy_video(done) {
         }))
         .pipe(gulp.dest("./static/js/"));
     gulp.src([video_css_path, video_min_css_path]).pipe(gulp.dest("./static/css/"));
+    done();
+}
+
+function copy_viewerjs(done) {
+    gulp.src([viewerjs_min_js_path]).pipe(gulp.dest("./static/js/"));
+    gulp.src([viewerjs_min_css_path]).pipe(gulp.dest("./static/css/"));
     done();
 }

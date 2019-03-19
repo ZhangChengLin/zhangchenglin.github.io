@@ -1,6 +1,6 @@
 /*!
  * Name: bootstrap-modal-js
- * Version: 0.0.1-alpha.beta.9
+ * Version: 1.0.0-beta.1
  * Author: 张成林
  * Email: 469946668@qq.com
  * Description: Bootstrap modal
@@ -8,6 +8,7 @@
  * Licenses: MIT
  * under the MIT License (license terms are at https://opensource.org/licenses/MIT).
  * GitHub: https://github.com/zhangchenglin/bootstrap-modal-js
+ * issues: https://github.com/zhangchenglin/bootstrap-modal-js/issues
  */
 
 function bootstrapModalJs(title, body, footer, ModalSizes, VerticallyCentered, LongContentType, EventType, CallbackFunction, Options) {
@@ -22,8 +23,9 @@ function bootstrapModalJs(title, body, footer, ModalSizes, VerticallyCentered, L
     Options = Options ? (typeof Options === "function" ? Options() : Options) : "";
 
     const document_body = document.querySelector("body");
-    const TimeID = new Date().getTime();
+    const TimeID = new Date().getTime().toString();
     const modal_ID = "Modal_" + TimeID;
+    const modal_header_ID = "modalHeader_" + TimeID;
     const modal_title_ID = "modalTitle_" + TimeID;
     const modal_body_ID = "modalBody_" + TimeID;
     const modal_footer_ID = "modalFooter_" + TimeID;
@@ -42,6 +44,7 @@ function bootstrapModalJs(title, body, footer, ModalSizes, VerticallyCentered, L
     modal.tabIndex = "-1";
     modal.role = "dialog";
     modal.setAttribute("aria-hidden", "true");
+    typeof title === "string" ? modal.setAttribute("aria-labelledby", modal_title_ID) : "";
 
     modal_dialog.className = "modal-dialog";
     switch (ModalSizes) {
@@ -77,15 +80,16 @@ function bootstrapModalJs(title, body, footer, ModalSizes, VerticallyCentered, L
     }
     modal_dialog.role = "document";
 
-    modal_content.className = "modal-content overflow-hidden shadow-lg";
+    modal_content.className = "modal-content shadow-lg overflow-hidden";
 
     modal_header.className = "modal-header";
+    modal_header.id = modal_header_ID;
 
-    modal_title.id = modal_title_ID;
-    typeof title === "object" ? modal_title.appendChild(title) : modal_title.innerHTML = title;
+    typeof title === "string" ? modal_title.id = modal_title_ID : "";
+    title instanceof HTMLElement ? modal_header.appendChild(title) : modal_title.innerHTML = title;
 
-    modal_close_btn.type = "button";
     modal_close_btn.className = "close";
+    modal_close_btn.type = "button";
     modal_close_btn.setAttribute("data-dismiss", "modal");
     modal_close_btn.setAttribute("aria-label", "Close");
 
@@ -94,14 +98,14 @@ function bootstrapModalJs(title, body, footer, ModalSizes, VerticallyCentered, L
 
     modal_body.className = "modal-body";
     modal_body.id = modal_body_ID;
-    typeof body === "object" ? modal_body.appendChild(body) : modal_body.innerHTML = body;
+    body instanceof HTMLElement ? modal_body.appendChild(body) : modal_body.innerHTML = body;
 
     modal_footer.className = "modal-footer";
     modal_footer.id = modal_footer_ID;
-    typeof footer === "object" ? modal_footer.appendChild(footer) : modal_footer.innerHTML = footer;
+    footer instanceof HTMLElement ? modal_footer.appendChild(footer) : modal_footer.innerHTML = footer;
 
     title ? modal_close_btn.appendChild(modal_close_span) : "";
-    title ? modal_header.appendChild(modal_title) : "";
+    typeof title === "string" ? modal_header.appendChild(modal_title) : "";
     title ? modal_header.appendChild(modal_close_btn) : "";
     title ? modal_content.appendChild(modal_header) : "";
     modal_content.appendChild(modal_body);
@@ -120,10 +124,12 @@ function bootstrapModalJs(title, body, footer, ModalSizes, VerticallyCentered, L
 }
 
 function removeBootstrapModalJs(modal_id) {
-    const modal = document.querySelector("#" + modal_id);
-    $("#" + modal_id).on("hidden.bs.modal", function () {
+    const modal_element = document.querySelector("#" + modal_id);
+    const $modal = $("#" + modal_id);
+    $modal.on("hidden.bs.modal", function () {
+        $modal.modal("dispose");
         setTimeout(function () {
-            modal.parentElement.removeChild(modal);
+            modal_element.parentElement.removeChild(modal_element);
         }, 5e2);
     });
 }
