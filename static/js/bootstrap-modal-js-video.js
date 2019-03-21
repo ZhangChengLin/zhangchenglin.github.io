@@ -34,9 +34,9 @@ function bootstrap_modal_js_build_video(e) {
     const video = document.createElement("video");
     const p_no_js = document.createElement("p");
     const p_no_js_a = document.createElement("a");
-    video.className = "mx-auto video-js";
-    video.width = "640";
-    video.height = "264";
+    video.className = "mx-auto video-js vjs-big-play-centered vjs-16-9";
+    video.width = "";
+    video.height = "";
     video.preload = "metadata";
     video_poster_value ? video.poster = video_poster_value : "";
     video.controls = "controls";
