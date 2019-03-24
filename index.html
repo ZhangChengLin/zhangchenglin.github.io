@@ -20,8 +20,28 @@
     <meta name="description" content="">
     <meta name="keywords" content="张成林,zhangchenglin">
 </head>
-<body class="min-vh-100">
+<body>
 <header>
+    <div class="position-fixed" style="top: 10px;left: 5px;">
+        <a href="javascript:" id="control" class="btn btn-sm btn-outline-secondary">
+            <i class="fa-spin fas fa-cog"></i>
+        </a>
+        <div class="d-none">
+            <div id="controlArea" class="btn-group">
+                <a href="javascript:" id="control_canvasNest" class="btn btn-sm btn-outline-secondary">背景控制</a>
+            </div>
+            <div id="canvasNestControl" class="btn-group">
+                <a href="javascript:" id="canvasNestControl_add" class="btn btn-sm btn-outline-secondary">
+                    <i class="">加深背景</i>
+                </a>
+                <a href="javascript:" id="canvasNestControl_destroy" class="btn btn-sm btn-outline-secondary">
+                    <i class="">清除背景</i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div id="canvasNestArea" class="position-fixed d-none d-lg-block min-vh-100 min-vw-100" style="z-index: -1;"></div>
     <div class="container text-center">
         <a href="javascript:" class="mt-5 btn btn-sm btn-outline-secondary"
            onclick="bootstrapModalJs('','<div class=\'text-center text-success font-weight-bold\'>正在建设中</div>','','sm',true);">您好</a>
@@ -69,8 +89,7 @@
 </footer>
 <div>
     <script src="static/js/lazyload.min.js"></script>
-    <script color="40, 167, 69" pointColor="255, 193, 7" opacity='0.9' zIndex="-1" count="200"
-            src="static/js/canvas-nest.js"></script>
+    <script src="static/js/canvas-nest.umd.js"></script>
     <script src="static/js/jquery.min.js"></script>
     <script src="static/js/popper.min.js"></script>
     <script src="static/js/bootstrap.min.js"></script>
