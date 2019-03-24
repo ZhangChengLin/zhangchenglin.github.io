@@ -52,6 +52,8 @@ bootstrap_modal_js_video();
 
     function canvasNest_destroy() {
         // canvasNest.destroy();
+
+        // noinspection LoopStatementThatDoesntLoopJS
         for (let i = canvasNestArea.childElementCount; i--;) {
             canvasNestArea.removeChild(canvasNestArea.childNodes[i]);
             break;
