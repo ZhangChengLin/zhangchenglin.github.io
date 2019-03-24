@@ -1,5 +1,5 @@
 const gulp = require("gulp");
-// const terser = require("gulp-terser");
+const terser = require("gulp-terser");
 const rename = require("gulp-rename");
 
 //bootstrap-toasts
@@ -55,6 +55,10 @@ const video_min_css_path = "./node_modules/video.js/dist/video-js.min.css";
 const viewerjs_min_css_path = "./node_modules/viewerjs/dist/viewer.min.css";
 const viewerjs_min_js_path = "./node_modules/viewerjs/dist/viewer.min.js";
 
+//
+const canvas_nest_js_path = "./node_modules/canvas-nest.js/dist/canvas-nest.js";
+const canvas_nest_js_module_path = "./node_modules/canvas-nest.js/lib/CanvasNest.js";
+
 gulp.task("copy_fonts", copy_fonts);
 gulp.task("copy_jq", copy_jq);
 gulp.task("copy_popper", copy_popper);
@@ -65,6 +69,7 @@ gulp.task("copy_bt", copy_bt);
 gulp.task("copy_vue", copy_vue);
 gulp.task("copy_video", copy_video);
 gulp.task("copy_viewerjs", copy_viewerjs);
+gulp.task("copy_canvas_nest", copy_canvas_nest);
 
 function copy_fonts(done) {
     gulp.src([font_css_path, font_min_css_path]).pipe(gulp.dest("./static/font/css"));
@@ -124,3 +129,9 @@ function copy_viewerjs(done) {
     gulp.src([viewerjs_min_css_path]).pipe(gulp.dest("./static/css/"));
     done();
 }
+
+function copy_canvas_nest(done) {
+    gulp.src([canvas_nest_js_path, canvas_nest_js_module_path]).pipe(gulp.dest("./static/js/"));
+    done();
+}
+
