@@ -57,7 +57,7 @@ const viewerjs_min_js_path = "./node_modules/viewerjs/dist/viewer.min.js";
 
 //
 const canvas_nest_js_path = "./node_modules/canvas-nest.js/dist/canvas-nest.js";
-const canvas_nest_js_module_path = "./node_modules/canvas-nest.js/lib/CanvasNest.js";
+const canvas_nest_umd_js_path = "./node_modules/canvas-nest.js/dist/canvas-nest.umd.js";
 
 gulp.task("copy_fonts", copy_fonts);
 gulp.task("copy_jq", copy_jq);
@@ -131,7 +131,7 @@ function copy_viewerjs(done) {
 }
 
 function copy_canvas_nest(done) {
-    gulp.src([canvas_nest_js_path, canvas_nest_js_module_path]).pipe(gulp.dest("./static/js/"));
+    gulp.src([canvas_nest_js_path, canvas_nest_umd_js_path]).pipe(gulp.dest("./static/js/"));
     done();
 }
 
