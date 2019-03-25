@@ -1,3 +1,6 @@
+
+
+
 (function () {
     const hitokoto = document.querySelector("#hitokoto");
     hitokoto.addEventListener("click", function () {

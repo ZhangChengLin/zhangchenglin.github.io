@@ -55,9 +55,12 @@ const video_min_css_path = "./node_modules/video.js/dist/video-js.min.css";
 const viewerjs_min_css_path = "./node_modules/viewerjs/dist/viewer.min.css";
 const viewerjs_min_js_path = "./node_modules/viewerjs/dist/viewer.min.js";
 
-//
+//canvas-nest.js
 const canvas_nest_js_path = "./node_modules/canvas-nest.js/dist/canvas-nest.js";
 const canvas_nest_umd_js_path = "./node_modules/canvas-nest.js/dist/canvas-nest.umd.js";
+
+//bowser.js
+const bowser_js_path = "./node_modules/bowser/es5.js";
 
 gulp.task("copy_fonts", copy_fonts);
 gulp.task("copy_jq", copy_jq);
@@ -70,6 +73,7 @@ gulp.task("copy_vue", copy_vue);
 gulp.task("copy_video", copy_video);
 gulp.task("copy_viewerjs", copy_viewerjs);
 gulp.task("copy_canvas_nest", copy_canvas_nest);
+gulp.task("copy_bowser", copy_bowser);
 
 function copy_fonts(done) {
     gulp.src([font_css_path, font_min_css_path]).pipe(gulp.dest("./static/font/css"));
@@ -135,3 +139,12 @@ function copy_canvas_nest(done) {
     done();
 }
 
+function copy_bowser(done) {
+    gulp.src([bowser_js_path])
+        .pipe(rename({
+            basename: "bowser",
+            suffix: ".min",
+        }))
+        .pipe(gulp.dest("./static/js/"));
+    done();
+}
