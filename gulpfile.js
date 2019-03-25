@@ -60,7 +60,10 @@ const canvas_nest_js_path = "./node_modules/canvas-nest.js/dist/canvas-nest.js";
 const canvas_nest_umd_js_path = "./node_modules/canvas-nest.js/dist/canvas-nest.umd.js";
 
 //bowser.js
-const bowser_js_path = "./node_modules/bowser/es5.js";
+const bowser_es5_js_path = "./node_modules/bowser/es5.js";
+const bowser_src_path = "./node_modules/bowser/src/*";
+const bowser_bundled_js_path = "./node_modules/bowser/bundled.js";
+
 
 gulp.task("copy_fonts", copy_fonts);
 gulp.task("copy_jq", copy_jq);
@@ -140,11 +143,10 @@ function copy_canvas_nest(done) {
 }
 
 function copy_bowser(done) {
-    gulp.src([bowser_js_path])
-        .pipe(rename({
-            basename: "bowser",
-            suffix: ".min",
-        }))
-        .pipe(gulp.dest("./static/js/"));
+    gulp.src([bowser_es5_js_path, bowser_bundled_js_path])
+        .pipe(gulp.dest("./static/js/bowser/"));
+    gulp.src([bowser_src_path])
+        .pipe(gulp.dest("./static/js/bowser/src"));
     done();
 }
+

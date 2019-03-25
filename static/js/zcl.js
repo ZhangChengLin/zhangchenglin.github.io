@@ -1,6 +1,3 @@
-
-
-
 (function () {
     const hitokoto = document.querySelector("#hitokoto");
     hitokoto.addEventListener("click", function () {
@@ -20,7 +17,7 @@
 
 bootstrap_modal_js_video();
 
-//canvas-nest.js
+//canvas-nest.umd.js
 (function () {
     const canvasNestArea = document.querySelector("#canvasNestArea");
     const count = 200;
