@@ -10,7 +10,7 @@
     <meta http-equiv="Cache-Control" content="no-siteapp">
     <meta http-equiv="Cache-Control" content="no-transform">
 
-    <script type="module" src="static/js/zcl_module.js"></script>
+    <script type="module" src="./static/js/zcl_module.mjs"></script>
 
     <link rel="stylesheet" href="static/css/bootstrap.min.css">
     <link rel="stylesheet" href="static/css/video-js.min.css">
@@ -36,13 +36,16 @@
                     <i class="">加深背景</i>
                 </a>
                 <a href="javascript:" id="canvasNestControl_destroy" class="btn btn-sm btn-outline-secondary">
-                    <i class="">清除背景</i>
+                    <i class="">去减背景</i>
+                </a>
+                <a href="javascript:" id="canvasNestControl_destroy_all" class="btn btn-sm btn-outline-secondary">
+                    <i class="">清除所有背景</i>
                 </a>
             </div>
         </div>
     </div>
 
-    <div id="canvasNestArea" class="position-fixed d-none d-lg-block min-vh-100 min-vw-100" style="z-index: -1;"></div>
+    <div id="canvasNestArea" class="position-fixed min-vh-100 min-vw-100" style="z-index: -1;"></div>
     <div class="container text-center">
         <a href="javascript:" class="mt-5 btn btn-sm btn-outline-secondary"
            onclick="bootstrapModalJs('','<div class=\'text-center text-success font-weight-bold\'>正在建设中</div>','','sm',true);">您好</a>
