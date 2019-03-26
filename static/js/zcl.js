@@ -17,7 +17,21 @@ const UA = window.navigator.userAgent;
     })
 })();
 
+//bootstrap-modal-js-video
 bootstrap_modal_js_video();
+
+//control
+(function () {
+    const control = document.querySelector("#control");
+
+    control.addEventListener("focusin", control_icon);
+    control.addEventListener("focusout", control_icon);
+
+    function control_icon() {
+        const icon = control.querySelector("i");
+        icon.classList.toggle("fa-spin");
+    }
+})();
 
 //canvas-nest.umd.js
 (function () {
