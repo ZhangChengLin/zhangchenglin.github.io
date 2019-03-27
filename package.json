@@ -4,7 +4,9 @@
   "description": "张成林的小窝",
   "main": "index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "",
+    "copy": ""
   },
   "repository": {
     "type": "git",
@@ -24,8 +26,6 @@
   "homepage": "https://zhangchenglin.github.io",
   "devDependencies": {
     "gulp": "^4.0.0",
-    "gulp-rename": "^1.4.0",
-    "gulp-terser": "^1.1.7",
     "rename": "^1.0.4",
     "terser": "^3.17.0"
   },
