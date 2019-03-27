@@ -1,13 +1,11 @@
-import {is_mobile} from "./zcl_bowser";
-
-import("./zcl_bowser.mjs");
-
+import {is_mobile, is_desktop} from "./zcl_bowser.mjs";
 
 //canvas-nest.umd.js
 (function () {
     const canvasNestArea = document.querySelector("#canvasNestArea");
-    const count = 200;
-    const step = 5;
+
+    const count = is_desktop ? 200 : (is_mobile ? 100 : "");
+    const step = is_desktop ? 5 : (is_mobile ? 3 : "");
 
     document.addEventListener("load", canvasNestInit(step));
 
