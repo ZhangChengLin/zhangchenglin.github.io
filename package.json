@@ -4,9 +4,7 @@
   "description": "张成林的小窝",
   "main": "index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "",
-    "copy": ""
+    "copy": "gulp copy_fonts copy_jq copy_popper copy_bs copy_bmj copy_lazyload copy_bt copy_vue copy_video copy_viewerjs copy_canvas_nest copy_bowser"
   },
   "repository": {
     "type": "git",
@@ -26,16 +24,16 @@
   "homepage": "https://zhangchenglin.github.io",
   "devDependencies": {
     "gulp": "^4.0.0",
-    "rename": "^1.0.4",
-    "terser": "^3.17.0"
+    "gulp-rename": "^1.4.0",
+    "gulp-terser": "^1.1.7"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.8.0",
+    "@fortawesome/fontawesome-free": "^5.8.1",
     "bootstrap-modal-js": "^1.0.0",
     "bootstrap-toasts": "^0.0.13-beta",
     "bowser": "^2.1.2",
     "canvas-nest.js": "^2.0.4",
-    "vanilla-lazyload": "^11.0.5",
+    "vanilla-lazyload": "^11.0.6",
     "video.js": "^7.4.1",
     "viewerjs": "^1.3.2",
     "vue": "^2.6.10"

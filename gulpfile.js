@@ -1,6 +1,6 @@
 const gulp = require("gulp");
-const terser = require("terser");
-const rename = require("rename");
+const terser = require("gulp-terser");
+const rename = require("gulp-rename");
 
 //bootstrap-toasts
 const bootstrap_toasts_js_path = "./node_modules/bootstrap-toasts/dist/bootstrap-toasts.js";
