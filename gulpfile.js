@@ -63,6 +63,9 @@ const bowser_es5_js_path = "./node_modules/bowser/es5.js";
 const bowser_src_path = "./node_modules/bowser/src/*";
 const bowser_bundled_js_path = "./node_modules/bowser/bundled.js";
 
+//lax.js
+const lax_js_path = "./node_modules/lax.js/lib/lax.js";
+const lax_min_js_path = "./node_modules/lax.js/lib/lax.min.js";
 
 gulp.task("copy_fonts", copy_fonts);
 gulp.task("copy_jq", copy_jq);
@@ -76,6 +79,7 @@ gulp.task("copy_video", copy_video);
 gulp.task("copy_viewerjs", copy_viewerjs);
 gulp.task("copy_canvas_nest", copy_canvas_nest);
 gulp.task("copy_bowser", copy_bowser);
+gulp.task("copy_lax", copy_lax);
 
 function copy_fonts(done) {
     gulp.src([font_css_path, font_min_css_path]).pipe(gulp.dest("./static/font/css"));
@@ -149,3 +153,7 @@ function copy_bowser(done) {
     done();
 }
 
+function copy_lax(done) {
+    gulp.src([lax_js_path, lax_min_js_path]).pipe(gulp.dest("./static/js/"))
+    done();
+}
