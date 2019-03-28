@@ -1,1 +1,1 @@
-import lax from "./lax.min.js";
+import ("./lax.min.js");
