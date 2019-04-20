@@ -174,7 +174,7 @@ const browsersList = [
       const browser = {
         name: 'Yandex Browser',
       };
-      const version = Utils.getFirstMatch(commonVersionIdentifier, ua) || Utils.getFirstMatch(/(?:yabrowser)[\s/](\d+(\.?_?\d+)+)/i, ua);
+      const version = Utils.getFirstMatch(/(?:yabrowser)[\s/](\d+(\.?_?\d+)+)/i, ua) || Utils.getFirstMatch(commonVersionIdentifier, ua);
 
       if (version) {
         browser.version = version;
@@ -295,6 +295,22 @@ const browsersList = [
         name: 'Internet Explorer',
       };
       const version = Utils.getFirstMatch(/(?:msie |rv:)(\d+(\.?_?\d+)+)/i, ua);
+
+      if (version) {
+        browser.version = version;
+      }
+
+      return browser;
+    },
+  },
+  {
+    test: [/\sedg\//i],
+    describe(ua) {
+      const browser = {
+        name: 'Microsoft Edge',
+      };
+
+      const version = Utils.getFirstMatch(/\sedg\/(\d+(\.?_?\d+)+)/i, ua);
 
       if (version) {
         browser.version = version;
