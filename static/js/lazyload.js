@@ -30,12 +30,57 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
     callback_reveal: null,
     callback_loaded: null,
     callback_error: null,
-    callback_finish: null
+    callback_finish: null,
+    use_native: false
   };
 
   var getInstanceSettings = function getInstanceSettings(customSettings) {
     return _extends({}, defaultSettings, customSettings);
   };
+  /* Creates instance and notifies it through the window element */
+
+
+  var createInstance = function createInstance(classObj, options) {
+    var event;
+    var eventString = "LazyLoad::Initialized";
+    var instance = new classObj(options);
+
+    try {
+      // Works in modern browsers
+      event = new CustomEvent(eventString, {
+        detail: {
+          instance: instance
+        }
+      });
+    } catch (err) {
+      // Works in Internet Explorer (all versions)
+      event = document.createEvent("CustomEvent");
+      event.initCustomEvent(eventString, false, false, {
+        instance: instance
+      });
+    }
+
+    window.dispatchEvent(event);
+  };
+  /* Auto initialization of one or more instances of lazyload, depending on the 
+      options passed in (plain object or an array) */
+
+
+  function autoInitialize(classObj, options) {
+    if (!options) {
+      return;
+    }
+
+    if (!options.length) {
+      // Plain object
+      createInstance(classObj, options);
+    } else {
+      // Array of objects
+      for (var i = 0, optionsItem; optionsItem = options[i]; i += 1) {
+        createInstance(classObj, optionsItem);
+      }
+    }
+  }
 
   var dataPrefix = "data-";
   var processedDataName = "was-processed";
@@ -84,50 +129,6 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
       return element !== elementToPurge;
     });
   };
-  /* Creates instance and notifies it through the window element */
-
-
-  var createInstance = function createInstance(classObj, options) {
-    var event;
-    var eventString = "LazyLoad::Initialized";
-    var instance = new classObj(options);
-
-    try {
-      // Works in modern browsers
-      event = new CustomEvent(eventString, {
-        detail: {
-          instance: instance
-        }
-      });
-    } catch (err) {
-      // Works in Internet Explorer (all versions)
-      event = document.createEvent("CustomEvent");
-      event.initCustomEvent(eventString, false, false, {
-        instance: instance
-      });
-    }
-
-    window.dispatchEvent(event);
-  };
-  /* Auto initialization of one or more instances of lazyload, depending on the 
-      options passed in (plain object or an array) */
-
-
-  function autoInitialize(classObj, options) {
-    if (!options) {
-      return;
-    }
-
-    if (!options.length) {
-      // Plain object
-      createInstance(classObj, options);
-    } else {
-      // Array of objects
-      for (var i = 0, optionsItem; optionsItem = options[i]; i += 1) {
-        createInstance(classObj, optionsItem);
-      }
-    }
-  }
 
   var callbackIfSet = function callbackIfSet(callback, argument) {
     if (callback) {
@@ -398,6 +399,35 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
     return true;
   };
 
+  var nativeLazyTags = ["IMG", "IFRAME"];
+
+  var shouldUseNative = function shouldUseNative(settings) {
+    return settings.use_native && "loading" in HTMLImageElement.prototype;
+  };
+
+  var loadAllNative = function loadAllNative(instance) {
+    instance._elements.forEach(function (element) {
+      if (nativeLazyTags.indexOf(element.tagName) === -1) {
+        return;
+      }
+
+      element.setAttribute("loading", "lazy");
+      revealElement(element, instance);
+    });
+  };
+
+  var nodeSetToArray = function nodeSetToArray(nodeSet) {
+    return Array.prototype.slice.call(nodeSet);
+  };
+
+  var queryElements = function queryElements(settings) {
+    return settings.container.querySelectorAll(settings.elements_selector);
+  };
+
+  var getElements = function getElements(elements, settings) {
+    return purgeProcessedElements(nodeSetToArray(elements || queryElements(settings)));
+  };
+
   var LazyLoad = function LazyLoad(customSettings, elements) {
     this._settings = getInstanceSettings(customSettings);
     this._loadingCount = 0;
@@ -410,15 +440,16 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
       var _this = this;
 
       var settings = this._settings;
-
-      var _elements = elements || settings.container.querySelectorAll(settings.elements_selector);
-
-      this._elements = purgeProcessedElements(Array.prototype.slice.call(_elements) // NOTE: nodeset to array for IE compatibility
-      );
+      this._elements = getElements(elements, settings);
 
       if (isBot || !this._observer) {
         this.loadAll();
         return;
+      }
+
+      if (shouldUseNative(settings)) {
+        loadAllNative(this);
+        this._elements = getElements(elements, settings);
       }
 
       this._elements.forEach(function (element) {
@@ -445,8 +476,7 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
     loadAll: function loadAll() {
       var _this3 = this;
 
-      var elements = this._elements;
-      elements.forEach(function (element) {
+      this._elements.forEach(function (element) {
         revealAndUnobserve(element, _this3);
       });
     }
