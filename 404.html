@@ -2,9 +2,63 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="applicable-device" content="pc,mobile">
+    <meta name="renderer" content="webkit">
+    <meta name="referrer" content="always">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+
+    <noscript>
+        <p class="font-weight-bold">未开启JavaScript</p>
+    </noscript>
+
+    <script type="module" src="./static/js/zcl_module.js"></script>
+
+    <link rel="stylesheet" href="./static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./static/font/css/all.min.css">
+
     <title>404</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
 </head>
-<body>
+<body style="min-height: 100vh;">
+<header>
+    <div class="position-fixed" style="top: 10px;left: 5px;">
+        <a href="javascript:" id="control" class="btn btn-sm btn-secondary rounded-circle">
+            <i class="fas fa-cog"></i>
+        </a>
+        <div class="d-none">
+            <div id="controlArea" class="btn-group">
+                <a href="javascript:" id="control_canvasNest" class="btn btn-sm btn-outline-secondary">背景控制</a>
+            </div>
+            <div id="canvasNestControl" class="btn-group">
+                <a href="javascript:" id="canvasNestControl_add" class="btn btn-sm btn-outline-secondary"
+                   title="加深背景"><i class="fa fa-plus"></i></a>
+                <a href="javascript:" id="canvasNestControl_destroy" class="btn btn-sm btn-outline-secondary"
+                   title="去减背景"><i class="fa fa-minus"></i></a>
+                <a href="javascript:" id="canvasNestControl_destroy_all" class="btn btn-sm btn-outline-secondary"
+                   title="清除所有背景"><i class="fa fa-ban"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <div id="canvasNestArea" class="position-fixed min-vh-100 min-vw-100" style="z-index: -1;"></div>
+</header>
+<footer>
+    <div class="container fixed-bottom text-center">
+        <span id="hitokoto" class="text-muted">人世一身霜雪，归来仍是少年。</span>
+    </div>
+</footer>
+<div>
+    <script src="static/js/canvas-nest.umd.js"></script>
+    <script src="static/js/jquery.min.js"></script>
+    <script src="static/js/popper.min.js"></script>
+    <script src="static/js/bootstrap.min.js"></script>
+    <script src="static/js/bootstrap-modal-js-video.js"></script>
+    <script src="static/js/zcl.js"></script>
+</div>
 
 </body>
 </html>
