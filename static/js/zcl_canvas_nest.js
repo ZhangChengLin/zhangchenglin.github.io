@@ -1,4 +1,4 @@
-import {is_mobile, is_desktop} from "./zcl_bowser.mjs";
+import {is_mobile, is_desktop} from "./zcl_bowser.js";
 
 //canvas-nest.umd.js
 const canvasNestArea = document.querySelector("#canvasNestArea");

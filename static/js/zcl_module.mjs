@@ -1,2 +1,2 @@
-import ("./zcl_canvas_nest.mjs");
+import ("./zcl_canvas_nest.js");
 import ("./zcl_lax.js");
