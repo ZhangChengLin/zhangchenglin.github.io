@@ -1,0 +1,25 @@
+# OS Files
+## Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+## OSX
+.DS_Store
+
+## Linux
+.directory
+
+# JetBrains IDE
+/.idea/
+
+# Hugo
+/resources/
+/.hugo_build.lock
+
+# Generate
+/node_modules/
+/dist/
+/docs/
+/public/
