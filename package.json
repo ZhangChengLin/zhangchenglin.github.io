@@ -1,0 +1,80 @@
+{
+    "name": "zhangchenglin",
+    "version": "0.0.1",
+    "description": "personal website",
+    "scripts": {
+        "build": "npm run hugo--build",
+        "dev": "npm-run-all -s hugo-gen:doc hugo-server:development",
+        "server": "npm run hugo-server:production",
+        "server-only:docs": "npx sirv-cli docs --port 9001",
+        "server-only:public": "npx sirv-cli public --port 9001",
+        "css-lint-vars": "npx fusv site/assets/scss/",
+        "hugo--build": "hugo --gc",
+        "hugo--build:watch": "hugo -e production --gc --watch --log",
+        "hugo--build:watch:debug": "hugo -e production --gc --watch --log --debug",
+        "hugo--dev": "hugo -e development --gc --log",
+        "hugo--dev:watch": "hugo -e development --gc --watch --log",
+        "hugo--dev:watch:debug": "hugo -e development --gc --watch --log --debug",
+        "hugo-server:production": "hugo server -e production --gc --watch --log",
+        "hugo-server:development": "hugo server -e development --gc --watch --log",
+        "hugo-env": "hugo env",
+        "hugo-env:-v": "hugo env -v",
+        "hugo-mod:clean": "hugo mod clean",
+        "hugo-mod:get:-u": "hugo mod get -u",
+        "hugo-mod:graph": "hugo mod graph",
+        "hugo-mod:init": "hugo mod init",
+        "hugo-mod:npm": "hugo mod npm",
+        "hugo-mod:npm:pack": "hugo mod npm pack",
+        "hugo-mod:tidy": "hugo mod tidy",
+        "hugo-mod:vendor": "hugo mod vendor",
+        "hugo-mod:verify": "hugo mod verify",
+        "hugo-convert:toJSON:-o": "hugo convert toJSON -o ./.cache/hugo_convert_toJSON",
+        "hugo-convert:toTOML:-o": "hugo convert toTOML -o ./.cache/hugo_convert_toTOML",
+        "hugo-convert:toYAML:-o": "hugo convert toYAML -o ./.cache/hugo_convert_toYAML",
+        "hugo-list:all:production": "hugo list all -e production",
+        "hugo-list:all:development": "hugo list all -e development",
+        "hugo-list:drafts": "hugo list drafts",
+        "hugo-list:expired": "hugo list expired",
+        "hugo-list:future": "hugo list future",
+        "hugo-gen:chromastyles": "hugo gen chromastyles",
+        "hugo-gen:doc": "hugo gen doc --dir site/content/commands",
+        "hugo-gen:man": "hugo gen man --dir site/content/commands",
+        "hugo-config": "hugo config",
+        "hugo-config:-f:json": "hugo config --format json",
+        "hugo-config:-f:yaml": "hugo config --format yaml",
+        "hugo-config:mounts": "hugo config mounts",
+        "hugo-version": "hugo version",
+        "update-deps": "ncu -u",
+        "eslint:html": "npm-run-all --parallel --aggregate-output eslint:site:html",
+        "eslint:site:html": "eslint site/layouts",
+        "lint:site:html": "",
+        "lint:public:html": "",
+        "lint:css": "",
+        "lint:js": ""
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ZhangChengLin/zhangchenglin.github.io.git"
+    },
+    "keywords": [
+        "ZhangChengLin",
+        "张成林"
+    ],
+    "author": "ZhangChengLin <469946668@qq.com> (https://张成林.中国/)",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/ZhangChengLin/zhangchenglin.github.io/issues"
+    },
+    "homepage": "https://zhangchenglin.github.io/",
+    "hugo-bin": {
+        "buildTags": "extended",
+        "downloadRepo": "https://hub.gitmirror.com/https://github.com/"
+    },
+    "dependencies": {
+        "bootstrap": "^5.4.0",
+        "bootstrap-icons": "^2.0.0"
+    },
+    "devDependencies": {
+        "hugo-bin": "^0.107.0"
+    }
+}
